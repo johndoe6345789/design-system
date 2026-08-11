@@ -1,0 +1,168 @@
+# Generated for the reposplit micro-repo layout.
+# Steps are emitted only for tooling this repo actually contains.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  npm:
+    name: npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          restore-keys: npm-${{ runner.os }}-
+      - name: Install dependencies
+        run: npm ci
+      - name: lint (shared/components)
+        working-directory: shared/components
+        run: npm run lint
+      - name: typecheck (shared/components)
+        working-directory: shared/components
+        run: npm run typecheck
+      - name: build (shared/components)
+        working-directory: shared/components
+        run: npm run build
+      - name: typecheck (shared/hooks/email)
+        working-directory: shared/hooks/email
+        run: npm run typecheck
+      - name: build (shared/hooks/email)
+        working-directory: shared/hooks/email
+        run: npm run build
+      - name: lint (shared/hooks)
+        working-directory: shared/hooks
+        run: npm run lint
+      - name: typecheck (shared/hooks)
+        working-directory: shared/hooks
+        run: npm run typecheck
+      - name: build (shared/hooks)
+        working-directory: shared/hooks
+        run: npm run build
+      - name: build (shared/icons/material-icons)
+        working-directory: shared/icons/material-icons
+        run: npm run build
+      - name: build (shared/icons/material-symbols)
+        working-directory: shared/icons/material-symbols
+        run: npm run build
+      - name: build (shared/redux/adapters)
+        working-directory: shared/redux/adapters
+        run: npm run build
+      - name: build (shared/redux/api-clients)
+        working-directory: shared/redux/api-clients
+        run: npm run build
+      - name: typecheck (shared/redux/core-hooks)
+        working-directory: shared/redux/core-hooks
+        run: npm run typecheck
+      - name: build (shared/redux/core-hooks)
+        working-directory: shared/redux/core-hooks
+        run: npm run build
+      - name: lint (shared/redux/core)
+        working-directory: shared/redux/core
+        run: npm run lint
+      - name: typecheck (shared/redux/core)
+        working-directory: shared/redux/core
+        run: npm run typecheck
+      - name: build (shared/redux/core)
+        working-directory: shared/redux/core
+        run: npm run build
+      - name: lint (shared/redux/email)
+        working-directory: shared/redux/email
+        run: npm run lint
+      - name: typecheck (shared/redux/email)
+        working-directory: shared/redux/email
+        run: npm run typecheck
+      - name: build (shared/redux/email)
+        working-directory: shared/redux/email
+        run: npm run build
+      - name: typecheck (shared/redux/hooks-async)
+        working-directory: shared/redux/hooks-async
+        run: npm run typecheck
+      - name: build (shared/redux/hooks-async)
+        working-directory: shared/redux/hooks-async
+        run: npm run build
+      - name: typecheck (shared/redux/hooks-auth)
+        working-directory: shared/redux/hooks-auth
+        run: npm run typecheck
+      - name: build (shared/redux/hooks-auth)
+        working-directory: shared/redux/hooks-auth
+        run: npm run build
+      - name: typecheck (shared/redux/hooks-canvas)
+        working-directory: shared/redux/hooks-canvas
+        run: npm run typecheck
+      - name: build (shared/redux/hooks-canvas)
+        working-directory: shared/redux/hooks-canvas
+        run: npm run build
+      - name: typecheck (shared/redux/hooks-data)
+        working-directory: shared/redux/hooks-data
+        run: npm run typecheck
+      - name: build (shared/redux/hooks-data)
+        working-directory: shared/redux/hooks-data
+        run: npm run build
+      - name: lint (shared/redux/hooks-forms)
+        working-directory: shared/redux/hooks-forms
+        run: npm run lint
+      - name: typecheck (shared/redux/hooks-forms)
+        working-directory: shared/redux/hooks-forms
+        run: npm run typecheck
+      - name: build (shared/redux/hooks-forms)
+        working-directory: shared/redux/hooks-forms
+        run: npm run build
+      - name: lint (shared/redux/hooks-utils)
+        working-directory: shared/redux/hooks-utils
+        run: npm run lint
+      - name: typecheck (shared/redux/hooks-utils)
+        working-directory: shared/redux/hooks-utils
+        run: npm run typecheck
+      - name: build (shared/redux/hooks-utils)
+        working-directory: shared/redux/hooks-utils
+        run: npm run build
+      - name: build (shared/redux/hooks)
+        working-directory: shared/redux/hooks
+        run: npm run build
+      - name: typecheck (shared/redux/middleware)
+        working-directory: shared/redux/middleware
+        run: npm run typecheck
+      - name: build (shared/redux/middleware)
+        working-directory: shared/redux/middleware
+        run: npm run build
+      - name: build (shared/redux/persist)
+        working-directory: shared/redux/persist
+        run: npm run build
+      - name: lint (shared/redux/services)
+        working-directory: shared/redux/services
+        run: npm run lint
+      - name: typecheck (shared/redux/services)
+        working-directory: shared/redux/services
+        run: npm run typecheck
+      - name: build (shared/redux/services)
+        working-directory: shared/redux/services
+        run: npm run build
+      - name: build (shared/redux/slices)
+        working-directory: shared/redux/slices
+        run: npm run build
+      - name: typecheck (shared/redux/timing-utils)
+        working-directory: shared/redux/timing-utils
+        run: npm run typecheck
+      - name: build (shared/redux/timing-utils)
+        working-directory: shared/redux/timing-utils
+        run: npm run build
+      - name: build (shared/storybook)
+        working-directory: shared/storybook
+        run: npm run build
