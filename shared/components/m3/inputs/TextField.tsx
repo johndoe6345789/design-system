@@ -44,7 +44,9 @@ export const TextField = forwardRef<HTMLInputElement | HTMLDivElement, TextField
         ) : multiline ? (
           <TextFieldMultiline innerRef={ref as React.Ref<HTMLTextAreaElement>} id={id} error={error} rows={rows ?? minRows}
             testId={tid} helperTextId={helperText ? htId : undefined} value={props.value as string}
-            onChange={props.onChange as never} name={props.name} disabled={props.disabled}
+            onChange={props.onChange as never} onBlur={props.onBlur as never}
+            onFocus={props.onFocus as never} onKeyDown={props.onKeyDown as never}
+            autoFocus={props.autoFocus} name={props.name} disabled={props.disabled}
             required={props.required} placeholder={props.placeholder}
             inputProps={inputProps as React.TextareaHTMLAttributes<HTMLTextAreaElement>} />
         ) : (
