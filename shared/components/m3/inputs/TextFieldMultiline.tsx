@@ -17,6 +17,11 @@ interface TextFieldMultilineProps {
   onChange?: React.ChangeEventHandler<
     HTMLTextAreaElement
   >
+  /** Called when the box loses focus (e.g. to save a draft). */
+  onBlur?: React.FocusEventHandler<HTMLTextAreaElement>
+  onFocus?: React.FocusEventHandler<HTMLTextAreaElement>
+  onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>
+  autoFocus?: boolean
   name?: string
   disabled?: boolean
   required?: boolean
@@ -38,6 +43,10 @@ export function TextFieldMultiline({
   helperTextId,
   value,
   onChange,
+  onBlur,
+  onFocus,
+  onKeyDown,
+  autoFocus,
   name,
   disabled,
   required,
@@ -59,6 +68,10 @@ export function TextFieldMultiline({
       aria-describedby={helperTextId}
       value={value}
       onChange={onChange}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onKeyDown={onKeyDown}
+      autoFocus={autoFocus}
       name={name}
       disabled={disabled}
       required={required}
